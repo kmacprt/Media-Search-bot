@@ -19,7 +19,7 @@ async def answer(bot, query):
     if AUTH_CHANNEL and not await is_subscribed(bot, query):
         await query.answer(results=[],
                            cache_time=0,
-                           switch_pm_text='You have to subscribe channel',
+                           switch_pm_text='ඔබට නාලිකාව දායක විය යුතුය',
                            switch_pm_parameter="subscribe")
         return
 
@@ -49,7 +49,7 @@ async def answer(bot, query):
                 reply_markup=reply_markup))
 
     if results:
-        switch_pm_text = f"{emoji.FILE_FOLDER} Results"
+        switch_pm_text = f"{emoji.FILE_FOLDER} ප්රතිපල"
         if string:
             switch_pm_text += f" for {string}"
 
@@ -60,21 +60,21 @@ async def answer(bot, query):
                            next_offset=str(next_offset))
     else:
 
-        switch_pm_text = f'{emoji.CROSS_MARK} No results'
+        switch_pm_text = f'{emoji.CROSS_MARK} ප්‍රතිඵල නොමැත'
         if string:
             switch_pm_text += f' for "{string}"'
 
         await query.answer(results=[],
                            cache_time=cache_time,
                            switch_pm_text=switch_pm_text,
-                           switch_pm_parameter="okay")
+                           switch_pm_parameter="හරි")
 
 
 def get_reply_markup(username, query):
     url = 't.me/share/url?url=' + quote(SHARE_BUTTON_TEXT.format(username=username))
     buttons = [[
-        InlineKeyboardButton('Search again', switch_inline_query_current_chat=query),
-        InlineKeyboardButton('Share bot', url=url),
+        InlineKeyboardButton('නැවත සොයන්න', switch_inline_query_current_chat=query),
+        InlineKeyboardButton('බෙදාහරින්න බොට්ව', url=url),
     ]]
     return InlineKeyboardMarkup(buttons)
 
