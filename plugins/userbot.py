@@ -14,14 +14,14 @@ async def index_files(bot, message):
     """Save channel or group files with the help of user bot"""
 
     if not USERBOT_STRING_SESSION:
-        await message.reply('Set `USERBOT_STRING_SESSION` in info.py file or in environment variables.')
+        await message.reply('Set `USERBOT_STRING_SESSION` info.py ගොනුවේ හෝ පරිසර විචල්‍යයන්හි.')
     elif len(message.command) == 1:
-        await message.reply('Please specify channel username or id in command.\n\n'
-                            'Example: `/index -10012345678`')
+        await message.reply('කරුණාකර විධාන නාලිකා පරිශීලක නාමය හෝ හැඳුනුම්පත සඳහන් කරන්න.\n\n'
+                            'උදාහරණ: `/index -10012345678`')
     elif lock.locked():
-        await message.reply('Wait until previous process complete.')
+        await message.reply('පෙර ක්‍රියාවලිය අවසන් වන තුරු රැඳී සිටින්න.')
     else:
-        msg = await message.reply('Processing...⏳')
+        msg = await message.reply('සකසමින්....⏳')
         raw_data = message.command[1:]
         user_bot = Client(USERBOT_STRING_SESSION, API_ID, API_HASH)
         chats = [int(chat) if id_pattern.search(chat) else chat for chat in raw_data]
