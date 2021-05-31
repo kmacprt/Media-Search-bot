@@ -44,7 +44,7 @@ async def answer(bot, query):
             InlineQueryResultCachedDocument(
                 title=file.file_name,
                 file_id=file.file_id,
-                caption=file.caption or "",
+                caption=file.caption or "📢: @brainstromch",
                 description=f'Size: {get_size(file.file_size)}\nType: {file.file_type}',
                 reply_markup=reply_markup))
 
@@ -75,6 +75,7 @@ def get_reply_markup(username, query):
     buttons = [[
         InlineKeyboardButton('නැවත සොයන්න', switch_inline_query_current_chat=query),
         InlineKeyboardButton('බෙදාහරින්න බොට්ව', url=url),
+        InlineKeyboardButton('පොත ඉල්ලන්න', url="https://t.me/BSSlk_bot"),
     ]]
     return InlineKeyboardMarkup(buttons)
 
